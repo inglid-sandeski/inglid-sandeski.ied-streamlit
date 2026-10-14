@@ -420,15 +420,15 @@ def map_plotly_faturamento_por_cidade(df_plot: pd.DataFrame):
     if agg.empty:
         st.warning("Não há geocódigos disponíveis para as cidades filtradas.")
         return
-    fig = px.scatter_mapbox(
+    fig = px.scatter_map(
         agg, lat="lat", lon="lon",
         size="faturamento", color="estado",
         hover_name="municipio",
         hover_data={"faturamento": ":.2f", "vendas": True, "lat": False, "lon": False},
         zoom=3.2, height=520,
-        title="Faturamento por Cidade (Plotly Mapbox)"
+        title="Faturamento por Cidade (Plotly Map)"
     )
-    fig.update_layout(mapbox_style="open-street-map", margin=dict(l=0, r=0, t=50, b=0))
+    fig.update_layout(map_style="open-street-map", margin=dict(l=0, r=0, t=50, b=0))
     st.plotly_chart(fig, use_container_width=True, key="app3_map_plotly")
 
 
@@ -497,4 +497,4 @@ else:
     map_folium_circles(filtered)
 
 st.divider()
-st.caption("Execução:  streamlit run streamlit_app3.py  •  Dataset fixo: vendas_dashboard.csv  •  Upload/Download desabilitados.")
+st.caption("Execução:  streamlit run appstreamlit.py  •  Dataset fixo: vendas_dashboard.csv  •  Upload/Download desabilitados.")
